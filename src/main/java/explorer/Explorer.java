@@ -25,7 +25,7 @@ public class Explorer {
 
     private Point currentPosition;
 
-    List<String> historyOfMoves = new ArrayList<>();
+    private List<String> historyOfMoves = new ArrayList<>();
 
     public Explorer(ExplorerRelated maze) {
         this.maze = maze;
@@ -36,20 +36,24 @@ public class Explorer {
 
     public void startExploration() {
         String[][] mazeArray = maze.getMaze();
-        while(!mazeArray[currentPosition.x][currentPosition.y].equals("F")) {
-            Action action = new ActionImpl(this);
-            System.out.println("Please select the explorer movements :");
-            List<String> availableMoves = action.checkAvailableMoves(currentDirection, currentPosition);
-            availableMoves.stream().forEach( m -> System.out.println(m));
-            Scanner scanner = new Scanner(System.in);
-            String hotKey = scanner.nextLine();
-            Optional<Moves> moves = Moves.of(hotKey);
-            if (moves.isPresent()) {
-                action.applyMove(moves.get());
-            }
+        if (mazeArray != null) {
+            while (!mazeArray[currentPosition.x][currentPosition.y].equals("F")) {
+                Action action = new ActionImpl(this);
+                System.out.println("Please select the explorer movements :");
+                List<String> availableMoves = action.checkAvailableMoves(currentDirection, currentPosition);
+                availableMoves.stream().forEach(m -> System.out.println(m));
+                Scanner scanner = new Scanner(System.in);
+                String hotKey = scanner.nextLine();
+                Optional<Moves> moves = Moves.of(hotKey);
+                if (moves.isPresent()) {
+                    action.applyMove(moves.get());
+                }
 
+            }
+            System.out.println("Exploration Complete");
+        } else {
+            System.out.println("Maze not Loaded.");
         }
-        System.out.println("Exploration Complete");
     }
 
     public ExplorerRelated getMaze() {

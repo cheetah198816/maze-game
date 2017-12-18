@@ -18,9 +18,9 @@ public enum Moves {
     private String description;
 
     Moves(int id, String hotkey, String description) {
-     this.id = id;
-     this.description = description;
-     this.hotkey = hotkey;
+        this.id = id;
+        this.description = description;
+        this.hotkey = hotkey;
     }
 
     public static Optional<Moves> of(String hotKey) {

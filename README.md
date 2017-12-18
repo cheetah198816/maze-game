@@ -11,6 +11,22 @@ in a README.txt file that you provide with your project!
 As for the technical requirements, the solution MUST be in Java! Feel free to use any build tool and a testing framework
 that you are most comfortable with!
 
+My Assumptions
+------------
+
+1. When the explorer goes out of the boundary, "Out of Boundary" is displayed, when it selects "Check out whats at the front" option.
+2. When the explorer turns left or right, it turns 90 degrees to the left/right of the given current direction.
+3. When the explorer moves forward it moves one step forward to the direction he is facing.
+4. The "Check out whats at the front" option can be used to check what exists at the front of the explorer.
+5. The "Records of the visit" option can be used to check where the explorer has already visited.
+6. When selecting the available movement options for the explorer please insert the hot keys in the console
+   to select the movement.(For example l for Turn Left, r for Turn Right)
+7. The exploration ends when the explorer reaches the Finish Point.
+8. Available movement option won't display forward option if there is a wall in front of the explorer or if the explorer is about
+   to cross a boundary.
+9. The main class is Explorer.java
+
+Enjoy exploring!!!!!!!!
 
 
 

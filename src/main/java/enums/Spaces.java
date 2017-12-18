@@ -15,7 +15,7 @@ public enum Spaces {
     private String space;
     private String description;
 
-    Spaces(String space , String description) {
+    Spaces(String space, String description) {
         this.space = space;
         this.description = description;
     }

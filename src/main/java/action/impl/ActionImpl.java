@@ -27,27 +27,37 @@ public class ActionImpl implements Action {
     @Override
     public void applyMove(Moves moves) {
         switch (moves) {
-            case FORWARD: moveForward(); break;
-            case LEFT: moveLeft();break;
-            case RECORD: recordMoves(); break;
-            case RIGHT: moveRight(); break;
-            case FRONT: checkAtTheFront();break;
+            case FORWARD:
+                moveForward();
+                break;
+            case LEFT:
+                moveLeft();
+                break;
+            case RECORD:
+                recordMoves();
+                break;
+            case RIGHT:
+                moveRight();
+                break;
+            case FRONT:
+                checkAtTheFront();
+                break;
         }
     }
 
-    private List<String> recordMoves() {
+    public List<String> recordMoves() {
         AtomicInteger index = new AtomicInteger();
         explorer.getHistoryOfMoves().stream().forEach(m -> System.out.println(index.incrementAndGet() + " " + m));
         return explorer.getHistoryOfMoves();
     }
 
-    private String checkAtTheFront() {
+    public String checkAtTheFront() {
         Spaces spaces = checkWhatExistsToTheFront(explorer.getMaze().getMaze(), explorer.getCurrentDirection(), explorer.getCurrentPosition());
         System.out.println(spaces.getDescription());
         return spaces.getDescription();
     }
 
-    private Directions moveRight() {
+    public Directions moveRight() {
         Directions rightDirection = Directions.of(explorer.getCurrentDirection().getRightDirection());
         explorer.setCurrentDirection(rightDirection);
         explorer.getHistoryOfMoves().add(Moves.RIGHT.toString(explorer.getCurrentDirection()));
@@ -55,7 +65,7 @@ public class ActionImpl implements Action {
         return explorer.getCurrentDirection();
     }
 
-    private Directions moveLeft() {
+    public Directions moveLeft() {
         Directions leftDirection = Directions.of(explorer.getCurrentDirection().getLeftDirection());
         explorer.setCurrentDirection(leftDirection);
         explorer.getHistoryOfMoves().add(Moves.LEFT.toString(explorer.getCurrentDirection()));
@@ -63,7 +73,7 @@ public class ActionImpl implements Action {
         return explorer.getCurrentDirection();
     }
 
-    private Point moveForward() {
+    public Point moveForward() {
         int frontX = explorer.getCurrentPosition().x + explorer.getCurrentDirection().getDisplacementX();
         int frontY = explorer.getCurrentPosition().y + explorer.getCurrentDirection().getDispacementY();
         explorer.setCurrentPosition(new Point(frontX, frontY));

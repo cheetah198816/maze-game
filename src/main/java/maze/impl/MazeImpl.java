@@ -24,33 +24,24 @@ public class MazeImpl implements MazeRelated, ExplorerRelated {
 
     private int noOfEmptySpaces;
 
-    public String[][] getMaze() {
-        return maze;
-    }
-
-    public Point getStartingPoint() {
-        return startingPoint;
-    }
-
-
     public MazeImpl(String fileName) {
         loadMaze(fileName);
     }
 
     private String[][] loadMaze(String filename) {
-        File file = new File("src/"+ filename);
+        File file = new File("src/" + filename);
         List<String> rows = new ArrayList<>();
         AtomicInteger rowIndex = new AtomicInteger();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             String row;
-            while ( (row = bufferedReader.readLine())!= null) {
+            while ((row = bufferedReader.readLine()) != null) {
                 rows.add(row);
             }
             maze = new String[rows.size()][rows.get(0).length()];
             rows.stream().forEach(r -> addRowInMaze(r, rowIndex));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File Not Found");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,12 +59,15 @@ public class MazeImpl implements MazeRelated, ExplorerRelated {
     private void addToMaze(AtomicInteger rowIndex, String character, AtomicInteger columnIndex) {
         final Spaces spaces = Spaces.of(character);
         switch (spaces) {
-            case EMPTY_SPACE: noOfEmptySpaces++;
-                              break;
-            case WALL: noOfWalls++;
-                       break;
-            case STARTING_POINT: startingPoint = new Point(rowIndex.get(), columnIndex.get());
-                                 break;
+            case EMPTY_SPACE:
+                noOfEmptySpaces++;
+                break;
+            case WALL:
+                noOfWalls++;
+                break;
+            case STARTING_POINT:
+                startingPoint = new Point(rowIndex.get(), columnIndex.get());
+                break;
         }
         maze[rowIndex.get()][columnIndex.getAndIncrement()] = character;
     }
@@ -96,5 +90,13 @@ public class MazeImpl implements MazeRelated, ExplorerRelated {
         } catch (ArrayIndexOutOfBoundsException ex) {
             return Spaces.of("B").getDescription();
         }
+    }
+
+    public String[][] getMaze() {
+        return maze;
+    }
+
+    public Point getStartingPoint() {
+        return startingPoint;
     }
 }

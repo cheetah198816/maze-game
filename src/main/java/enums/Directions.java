@@ -6,10 +6,10 @@ import java.util.Arrays;
  * Created by chetan on 17.12.2017.
  */
 public enum Directions {
-    NORTH(-1,0, "North", "West", "East"),
+    NORTH(-1, 0, "North", "West", "East"),
     SOUTH(1, 0, "South", "East", "West"),
-    EAST(0,1, "East", "North", "South"),
-    WEST(0,-1, "West", "South", "North");
+    EAST(0, 1, "East", "North", "South"),
+    WEST(0, -1, "West", "South", "North");
 
     private int displacementX;
     private int dispacementY;
